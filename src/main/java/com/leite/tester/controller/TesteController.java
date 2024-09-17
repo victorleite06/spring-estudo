@@ -11,13 +11,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping(value = "/public/api/teste")
+@RequestMapping(value = "/api/public/teste")
 public class TesteController {
 
     private final TesteRepository testeRepository;
 
     @GetMapping("/{teste}")
     public ResponseEntity<String> testePersist(@PathVariable(name = "teste") String teste) {
-        return ResponseEntity.ok(testeRepository.save(new Teste(teste)).getTeste());
+        testeRepository.save(new Teste(teste));
+        return ResponseEntity.ok(teste);
     }
 }
